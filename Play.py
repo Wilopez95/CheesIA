@@ -135,6 +135,27 @@ def auxWindow(i):
         os.system("start " + fileName)
 
 
+def convertion(n):
+    columna = n%8
+    fila = (n//8)+1
+    if columna == 0:
+        columna='A'
+    elif columna == 1:
+        columna = 'B'
+    elif columna == 2:
+        columna = 'C'
+    elif columna == 3:
+        columna = 'D'
+    elif columna == 4:
+        columna = 'E'
+    elif columna == 5:
+        columna = 'F'
+    elif columna == 6:
+        columna = 'G'
+    elif columna == 7:
+        columna = 'H'
+
+    return(columna+str(fila))
 
 
 def saveLog():
@@ -173,8 +194,7 @@ while not quitGame:
                                 prevx = allPieces[piece][1][0]
                                 prevy = allPieces[piece][1][1]
                                                                 
-                                #print('Select piece: ')
-                                #print(allPieces[selectedImage][2].toString())
+                                #print('Select piece: '+ allPieces[selectedImage][2].toString())
                                 #print(1+prevx//100) #--X
                                 #print(1+prevy//100) #--Y
 
@@ -196,7 +216,7 @@ while not quitGame:
                     if 840 < mx < 1017 and Moves != '':
                         ActionsList.append(Moves)
                         Moves=''
-                        print(ActionsList)
+                        #print(ActionsList)
                     if 1000 < mx < 1062:
                         auxWindow(0)
 
@@ -234,7 +254,9 @@ while not quitGame:
                     # TODO make it so it updates board
                     # TODO update moved piece's legal moves some how
                     # print(allPieces[selectedImage][2])
-                    # print(theMove)
+                    #Moviemiento de destino
+                    ActionsList.append(allPieces[selectedImage][2].toString()+'-'+convertion(int(theMove)))
+
                     # print(firstBoard)
                     thisMove = Move(firstBoard, allPieces[selectedImage][2], theMove)
                     newBoard = thisMove.createNewBoard()
