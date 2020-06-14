@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7b8c6ef1-4cd4-44ab-ba68-ecc8ca5b2908" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Play.py" beforeDir="false" afterPath="$PROJECT_DIR$/Play.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/playsTree.py" beforeDir="false" />
-    </list>
+    <list default="true" id="7b8c6ef1-4cd4-44ab-ba68-ecc8ca5b2908" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -234,7 +230,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592149625827</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="fix move name">
+      <created>1592153333842</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1592153333842</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -262,12 +265,12 @@
     </state>
     <state x="530" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/66.0.1470.864/1920.0.1366.728@66.0.1470.864" timestamp="1585500674985" />
     <state x="538" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/78.0.1458.864/1920.0.1366.728@78.0.1458.864" timestamp="1583604946904" />
-    <state x="460" y="26" key="CommitChangelistDialog2" timestamp="1592149625107">
+    <state x="460" y="26" key="CommitChangelistDialog2" timestamp="1592153333303">
       <screen x="74" y="0" width="1462" height="864" />
     </state>
     <state x="453" y="26" key="CommitChangelistDialog2/65.0.1471.864/1920.0.1366.728@65.0.1471.864" timestamp="1588473139050" />
     <state x="454" y="26" key="CommitChangelistDialog2/66.0.1470.864/1920.0.1366.728@66.0.1470.864" timestamp="1585503173875" />
-    <state x="460" y="26" key="CommitChangelistDialog2/74.0.1462.864/1920.0.1366.728@74.0.1462.864" timestamp="1592149625107" />
+    <state x="460" y="26" key="CommitChangelistDialog2/74.0.1462.864/1920.0.1366.728@74.0.1462.864" timestamp="1592153333303" />
     <state x="463" y="26" key="CommitChangelistDialog2/78.0.1458.864/1920.0.1366.728@78.0.1458.864" timestamp="1584387097603" />
     <state x="588" y="187" key="FileChooserDialogImpl" timestamp="1584373245716">
       <screen x="78" y="0" width="1458" height="864" />
@@ -325,12 +328,16 @@
     </state>
     <state width="1451" height="277" key="GridCell.Tab.1.right/65.0.1471.864/1920.0.1366.728@65.0.1471.864" timestamp="1587847199324" />
     <state width="1449" height="277" key="GridCell.Tab.1.right/66.0.1470.864/1920.0.1366.728@66.0.1470.864" timestamp="1585500915937" />
-    <state x="397" y="165" key="Vcs.Push.Dialog.v2" timestamp="1592149628036">
+    <state x="518" y="148" key="MultipleFileMergeDialog" timestamp="1592153463134">
+      <screen x="74" y="0" width="1462" height="864" />
+    </state>
+    <state x="518" y="148" key="MultipleFileMergeDialog/74.0.1462.864/1920.0.1366.728@74.0.1462.864" timestamp="1592153463134" />
+    <state x="397" y="165" key="Vcs.Push.Dialog.v2" timestamp="1592153336689">
       <screen x="74" y="0" width="1462" height="864" />
     </state>
     <state x="390" y="165" key="Vcs.Push.Dialog.v2/65.0.1471.864/1920.0.1366.728@65.0.1471.864" timestamp="1588472909578" />
     <state x="391" y="165" key="Vcs.Push.Dialog.v2/66.0.1470.864/1920.0.1366.728@66.0.1470.864" timestamp="1585503177511" />
-    <state x="397" y="165" key="Vcs.Push.Dialog.v2/74.0.1462.864/1920.0.1366.728@74.0.1462.864" timestamp="1592149628036" />
+    <state x="397" y="165" key="Vcs.Push.Dialog.v2/74.0.1462.864/1920.0.1366.728@74.0.1462.864" timestamp="1592153336689" />
     <state x="400" y="165" key="Vcs.Push.Dialog.v2/78.0.1458.864/1920.0.1366.728@78.0.1458.864" timestamp="1584387103043" />
     <state x="470" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1583622115461">
       <screen x="78" y="0" width="1458" height="864" />
