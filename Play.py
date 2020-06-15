@@ -16,7 +16,7 @@ gameDisplay = pygame.display.set_mode((1100, 825))
 pygame.display.set_caption("PyChess")
 clock = pygame.time.Clock()
 firstBoard = chessBoard.Board()
-firstBoard.createBoard('pta1')
+firstBoard.createBoard('TableroDeJuego')
 #firstBoard.printBoard()
 
 allTiles = []
