@@ -1,1 +1,6 @@
-this is a log
+Move 1: q:A6-C6.
+Move 2: R:C7-(X):C6.
+Move 3: n:A3-C4.
+Move 4: P:E7-E8.
+Move 5: r:G2-G4.
+Move 6: Q:E8-E2.

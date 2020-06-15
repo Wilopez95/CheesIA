@@ -96,20 +96,40 @@ class Board:
                 print('|', end='\n')
                 count = 0
 
+    def getLen(self):
+        return len(self.gameTiles)
 
+    def getTile(self,i):
+        return self.gameTiles[i].pieceOnTile.toString()
 
+    def isMinus(self,x):
+        if x=='k':
+            return True
+        elif x=='q':
+            return True
+        elif x=='n':
+            return True
+        elif x=='b':
+            return True
+        elif x=='r':
+            return True
+        elif x=='p':
+            return True
+        else:
+            return False
 
-# firstBoard = Board()
-# firstBoard.createBoard()
-# print(firstBoard.gameTiles)
-# firstBoard.printBoard()
-#firstBoard.gameTiles[1].pieceOnTile.calculateLegalMoves(firstBoard)
-#firstBoard.gameTiles[0].pieceOnTile.calculateLegalMoves(firstBoard)
-#firstBoard.gameTiles[2].pieceOnTile.calculateLegalMoves(firstBoard)
-#firstBoard.gameTiles[3].pieceOnTile.calculateLegalMoves(firstBoard)
-#firstBoard.gameTiles[4].pieceOnTile.calculateLegalMoves(firstBoard)
-#firstBoard.gameTiles[9].pieceOnTile.calculateLegalMoves(firstBoard)
-#firstBoard.gameTiles[55].pieceOnTile.calculateLegalMoves(firstBoard)
-# firstBoard.enPassPawn = firstBoard.gameTiles[24].pieceOnTile
-# firstBoard.enPassPawnBehind = 16
-# firstBoard.gameTiles[25].pieceOnTile.calculateLegalMoves(firstBoard)
+    def isMayus(self,x):
+        if x=='K':
+            return True
+        elif x=='Q':
+            return True
+        elif x=='N':
+            return True
+        elif x=='B':
+            return True
+        elif x=='R':
+            return True
+        elif x=='P':
+            return True
+        else:
+            return False

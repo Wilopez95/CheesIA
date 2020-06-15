@@ -17,7 +17,7 @@ pygame.display.set_caption("PyChess")
 clock = pygame.time.Clock()
 firstBoard = chessBoard.Board()
 firstBoard.createBoard('pta1')
-# firstBoard.printBoard()
+#firstBoard.printBoard()
 
 allTiles = []
 allPieces = []
@@ -39,6 +39,8 @@ dark_gray = ((70,70,70))
 
 font = pygame.font.Font(None, 32)
 logFileName = ''
+logPmoving = ''
+PflagEat = False
 
 def createSqParams():
     allSqRanges = []
@@ -70,6 +72,7 @@ def drawChessPieces():
     black = (66,134,244)
     white = (143,155,175)
     number = 0
+
     for _ in range(8):
         for _ in range(8):
             if color % 2 == 0:
@@ -131,7 +134,7 @@ def auxWindow(i):
         fileName = "./BoardFiles/Help/help.txt"
         os.system("start " + fileName)
     else:
-        fileName = "./BoardFiles/Log/"+logFileName+".txt"
+        fileName = "./BoardFiles/Log/log.txt"
         os.system("start " + fileName)
 
 
@@ -157,10 +160,57 @@ def convertion(n):
 
     return(columna+str(fila))
 
+def getDataMove(p,fboar,nboar):
+    datamove = ''
+    if p==0:
+        print('Player move')
+        datamove=datamove+MovePlayer(fboar,nboar,0)+'-'
+        if Eat(fboar,nboar):
+            datamove = datamove+'(X):'
+        datamove = datamove + MovePlayer(nboar, fboar, 1) + '.'
+        ActionsList.append(datamove)
+    else:
+        print('IA move')
+        datamove = datamove + MoveIA(fboar, nboar, 0) + '-'
+        if Eat(fboar,nboar):
+            datamove = datamove + '(X):'
+        datamove = datamove + MoveIA(nboar, fboar, 1) + '.'
+        ActionsList.append(datamove)
+
+
+def MovePlayer(boarx, boary,t):
+    for index in range(boarx.getLen()):
+        if boarx.isMinus(boarx.getTile(index)):
+           if(boarx.getTile(index)!=boary.getTile(index)):
+                if t==0:
+                    return boarx.getTile(index)+':'+convertion(index)
+                else:
+                    return convertion(index)
+
+
+
+def MoveIA(boarx, boary,t):
+    for index in range(boarx.getLen()):
+        if boarx.isMayus(boarx.getTile(index)):
+           if(boarx.getTile(index)!=boary.getTile(index)):
+                if t==0:
+                    return boarx.getTile(index)+':'+convertion(index)
+                else:
+                    return convertion(index)
+
+
+
+def Eat(fboar, nboar):
+    if (len(fboar.calculateActivePieces(nboar.currentPlayer))-len(nboar.calculateActivePieces(nboar.currentPlayer))!=0):
+        return True
+
+
 
 def saveLog():
-    pass
-
+    f= open("./BoardFiles/Log/log.txt","w+")
+    for i in range(len(ActionsList)):
+        f.write("Move "+str(i+1)+": "+ActionsList[i]+'\n')
+    f.close()
 
 
 selectedImage = None
@@ -193,10 +243,11 @@ while not quitGame:
                                 selectedImage = piece
                                 prevx = allPieces[piece][1][0]
                                 prevy = allPieces[piece][1][1]
-                                                                
-                                #print('Select piece: '+ allPieces[selectedImage][2].toString())
-                                #print(1+prevx//100) #--X
-                                #print(1+prevy//100) #--Y
+
+
+                                initialpos = (my // 100 * 8) + mx // 100
+                                logPmoving = ''
+                                logPmoving = logPmoving+allPieces[selectedImage][2].toString()+':'+convertion(initialpos)+'-'
 
 
                                 selectedLegals = allPieces[selectedImage][2].calculateLegalMoves(firstBoard)
@@ -254,14 +305,13 @@ while not quitGame:
                     # TODO make it so it updates board
                     # TODO update moved piece's legal moves some how
                     # print(allPieces[selectedImage][2])
-                    #Moviemiento de destino
-                    ActionsList.append(allPieces[selectedImage][2].toString()+'-'+convertion(int(theMove)))
-
                     # print(firstBoard)
                     thisMove = Move(firstBoard, allPieces[selectedImage][2], theMove)
                     newBoard = thisMove.createNewBoard()
+                    getDataMove(0, firstBoard, newBoard)
                     if not newBoard == False:
                         firstBoard = newBoard
+
                     # else:
                     #     print(newBoard)
                     #firstBoard.printBoard()
@@ -273,16 +323,17 @@ while not quitGame:
 
                     #print(firstBoard.currentPlayer)
                     currentPlayer = newBoard.currentPlayer
-
-
+                    
                     # TODO add logic that it is AI player
                     if currentPlayer == "Black":
                         aiBoard = True
+
                         #minimax = Minimax(firstBoard, 1)
                         #aiBoard = minimax.getMove()
                         aiBoard = tree.getBestMove(firstBoard)
-                        aiBoard.printBoard()
-                        # aiBoard.printBoard()
+                        #aiBoard.printBoard()
+
+                        getDataMove(1,firstBoard,aiBoard)
                         firstBoard = aiBoard
 
                         # TODO update game pieces
@@ -290,7 +341,6 @@ while not quitGame:
                         allPieces = newP
                         currentPlayer = aiBoard.currentPlayer
 
-                        #pygame.time.delay(1000)
 
                     #minimax.board.printBoard()
 
@@ -300,6 +350,8 @@ while not quitGame:
 
             except:
                 pass
+                #ActionsList.append('Jaque')
+
 
             prevy =0
             prevx = 0
