@@ -24,7 +24,7 @@ def generarArchivo():
     print("Generar Archivo")
     encabezado = "#BEGIN \n#MAY-NEGRAS \n#MIN-BLANCAS \n# K-k : King \n# Q-q : Queen \n# N-n : Knight \n# B-b : " \
                  "Bishop \n# R-r : Rook \n# P-p : Pawn \n\n#-|A|B|C|D|E|F|G|H| \n#------------------\n"
-    nuevoArchivo = open("Test.cfl", 'w')
+    nuevoArchivo = open("BoardFiles/Test.cfl", 'w')
     nuevoArchivo.write(encabezado)
     for x in range(0, 8):
         linea = str(x + 1) + "-|"
