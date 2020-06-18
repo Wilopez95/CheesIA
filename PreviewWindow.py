@@ -13,7 +13,7 @@ equivalente = ["P", "N", "B", "R", "Q", "K"]
 maxContador = [[8, 8], [2, 2], [1, 1]]
 contadores = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
 piezasGeneradas = []
-listoParaJugar = False
+global listoParaJugar
 
 def obtenerEquivalente(nombre, pColor):
     for x in range(0, 8):
@@ -23,28 +23,37 @@ def obtenerEquivalente(nombre, pColor):
             else:
                 return equivalente[x]
 
+def readyToPlay():
+    global listoParaJugar
+    listoParaJugar = True
+    playButon["state"] = "active"
+
 
 def generarArchivo():
     print("Generar Archivo")
-    encabezado = "#BEGIN \n#MAY-NEGRAS \n#MIN-BLANCAS \n# K-k : King \n# Q-q : Queen \n# N-n : Knight \n# B-b : " \
-                 "Bishop \n# R-r : Rook \n# P-p : Pawn \n\n#-|A|B|C|D|E|F|G|H| \n#------------------\n"
-    nuevoArchivo = open("BoardFiles/TableroDeJuego.cfl", 'w')
-    nuevoArchivo.write(encabezado)
-    for x in range(0, 8):
-        linea = str(x + 1) + "-|"
-        for y in range(0, 8):
-            if piezasGeneradas[x][y] is None:
-                linea = linea + "-|"
-            else:
-                linea = linea + obtenerEquivalente(piezasGeneradas[x][y][0], piezasGeneradas[x][y][1]) + "|"
-        nuevoArchivo.write(linea + "\n")
-    nuevoArchivo.write("\n#PLAYER TURN\n")
-    if CheckVar1.get():
-        nuevoArchivo.write("White\n\n#END")
-    else:
-        nuevoArchivo.write("Black\n\n#END")
-    nuevoArchivo.close()
-    listoParaJugar = True
+    try:
+        encabezado = "#BEGIN \n#MAY-NEGRAS \n#MIN-BLANCAS \n# K-k : King \n# Q-q : Queen \n# N-n : Knight \n# B-b : " \
+                         "Bishop \n# R-r : Rook \n# P-p : Pawn \n\n#-|A|B|C|D|E|F|G|H| \n#------------------\n"
+        nuevoArchivo = open("BoardFiles/TableroDeJuego.cfl", 'w')
+        nuevoArchivo.write(encabezado)
+        for x in range(0, 8):
+            linea = str(x + 1) + "-|"
+            for y in range(0, 8):
+                 if piezasGeneradas[x][y] is None:
+                     linea = linea + "-|"
+                 else:
+                    linea = linea + obtenerEquivalente(piezasGeneradas[x][y][0], piezasGeneradas[x][y][1]) + "|"
+            nuevoArchivo.write(linea + "\n")
+        nuevoArchivo.write("\n#PLAYER TURN\n")
+        if CheckVar1.get():
+            nuevoArchivo.write("White\n\n#END")
+        else:
+            nuevoArchivo.write("Black\n\n#END")
+        nuevoArchivo.close()
+        readyToPlay()
+    except:
+        print("Error al generar")
+
 
 def llenarMatriX(lista):
     for x in range(0, 8):
@@ -134,6 +143,7 @@ def clicked():
 
 
 ##Inicio de declaraciones y de programa
+listoParaJugar = False
 llenarMatriX(piezasGeneradas)
 window = Tk()
 
@@ -182,6 +192,7 @@ C2.pack()
 CheckVar1.set(True)
 botonFile.pack(padx=40, pady=10)
 playButon.pack(padx=40, pady=10)
+playButon["state"] = "disabled"
 '''
 columna.grid(column=3, row=15)
 fila.grid(column=3, row=25)
