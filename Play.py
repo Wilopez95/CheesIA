@@ -262,8 +262,8 @@ while not quitGame:
                         saveLog()
                         auxWindow(1)
                 if 700 < my < 778:
-                    if 840 < mx < 1017 and Moves != '':
-                        ActionsList.append(Moves)
+                    if 840 < mx < 1017 and Moves != '':#En esta seccion van las acciones del boton Play!
+                        #ActionsList.append(Moves)
                         Moves = ''
                         print(ActionsList)
                     if 1000 < mx < 1062:
