@@ -148,6 +148,7 @@ def obtenerFile():
 
     file1.close()
     imprimirTablero(piezasGeneradas)
+    readyToPlay()
 
 
 def llamarJuego():
