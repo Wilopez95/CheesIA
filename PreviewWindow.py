@@ -15,6 +15,7 @@ contadores = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
 piezasGeneradas = []
 global listoParaJugar
 
+
 def obtenerEquivalente(nombre, pColor):
     for x in range(0, 8):
         if nombre == piezas[x]:
@@ -22,6 +23,7 @@ def obtenerEquivalente(nombre, pColor):
                 return equivalente[x].lower()
             else:
                 return equivalente[x]
+
 
 def readyToPlay():
     global listoParaJugar
@@ -33,15 +35,15 @@ def generarArchivo():
     print("Generar Archivo")
     try:
         encabezado = "#BEGIN \n#MAY-NEGRAS \n#MIN-BLANCAS \n# K-k : King \n# Q-q : Queen \n# N-n : Knight \n# B-b : " \
-                         "Bishop \n# R-r : Rook \n# P-p : Pawn \n\n#-|A|B|C|D|E|F|G|H| \n#------------------\n"
+                     "Bishop \n# R-r : Rook \n# P-p : Pawn \n\n#-|A|B|C|D|E|F|G|H| \n#------------------\n"
         nuevoArchivo = open("BoardFiles/TableroDeJuego.cfl", 'w')
         nuevoArchivo.write(encabezado)
         for x in range(0, 8):
             linea = str(x + 1) + "-|"
             for y in range(0, 8):
-                 if piezasGeneradas[x][y] is None:
-                     linea = linea + "-|"
-                 else:
+                if piezasGeneradas[x][y] is None:
+                    linea = linea + "-|"
+                else:
                     linea = linea + obtenerEquivalente(piezasGeneradas[x][y][0], piezasGeneradas[x][y][1]) + "|"
             nuevoArchivo.write(linea + "\n")
         nuevoArchivo.write("\n#PLAYER TURN\n")
@@ -86,11 +88,66 @@ def clickedJugador2():
     CheckVar1.set(not CheckVar1.get())
 
 
+def loadPieces(p):
+    if p == 'K':
+        return (piezas[5], colores[1])
+    elif p == 'k':
+        return (piezas[5], colores[0])
+    elif (p == 'Q'):
+        return (piezas[4], colores[1])
+    elif (p == 'q'):
+        return (piezas[4], colores[0])
+    elif (p == 'N'):
+        return (piezas[1], colores[1])
+    elif (p == 'n'):
+        return (piezas[1], colores[0])
+    elif (p == 'B'):
+        return (piezas[2], colores[1])
+    elif (p == 'b'):
+        return (piezas[2], colores[0])
+    elif (p == 'R'):
+        return (piezas[3], colores[1])
+    elif (p == 'r'):
+        return (piezas[3], colores[0])
+    elif (p == 'P'):
+        return (piezas[0], colores[1])
+    elif (p == 'p'):
+        return (piezas[0], colores[0])
+    else:
+        return None
+
+
 def obtenerFile():
     file = filedialog.askopenfilename(initialdir="/", title="Select file",
                                       filetypes=(
                                           ("all files", "*.*"), ("games files", "*.cfl")))
     print(file)
+    file1 = open(file, 'r')
+    countx = -1
+    county = 0
+    while True:
+        line = file1.readline()
+        if not line:
+            break
+        if line[0] != '#':
+            if line != '\n':
+                if line[0] == 'W' or line[0] == 'B':
+                    pass
+                    print("jugador :" + line[0:5])
+                else:
+                    for x in range(2, 18):
+                        if line[x] != '|':
+                            countx += 1
+                            print(county, countx, line[x])
+                            piezasGeneradas[county][countx] = loadPieces(line[x])
+                        if countx == 7:
+                            countx = -1
+                            county += 1
+                        if county == 8:
+                            county = 0
+
+    file1.close()
+    imprimirTablero(piezasGeneradas)
 
 
 def llamarJuego():
@@ -180,6 +237,8 @@ playButon = Button(window, text="A jugar", command=llamarJuego)
 # ubicacion de los componentes
 lbl.pack(padx=0, pady=0)
 texto.pack(side=LEFT, fill=Y, padx=20, pady=10)
+C1.pack()
+C2.pack()
 columna.pack(padx=40, pady=10)
 fila.pack(padx=40, pady=10)
 colorPiezas.pack(padx=40, pady=10)
@@ -187,8 +246,6 @@ nombrePieza.pack(padx=40, pady=10)
 texto.pack(padx=40, pady=10)
 btn.pack(padx=40, pady=10)
 btn2.pack(padx=40, pady=10)
-C1.pack()
-C2.pack()
 CheckVar1.set(True)
 botonFile.pack(padx=40, pady=10)
 playButon.pack(padx=40, pady=10)

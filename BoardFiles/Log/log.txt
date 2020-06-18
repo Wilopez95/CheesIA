@@ -1,4 +1,0 @@
-Move 1: r:G2-B2.
-Move 2: K:A1-(X):B2.
-Move 3: n:A3-C2.
-Move 4: R:C7-(X):C2.
