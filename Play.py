@@ -1,6 +1,6 @@
 import pygame
 import os
-
+import re
 from board import chessBoard
 from board.move import Move
 from player.minimax import Minimax
@@ -220,6 +220,11 @@ resetColors = []
 quitGame = False
 mx, my = pygame.mouse.get_pos()
 prevx, prevy = [0, 0]
+command_move = False
+command_x = 0 
+command_y = 0
+
+
 
 while not quitGame:
 
@@ -264,8 +269,60 @@ while not quitGame:
                 if 700 < my < 778:
                     if 840 < mx < 1017 and Moves != '':#En esta seccion van las acciones del boton Play!
                         #ActionsList.append(Moves)
+                        # get cord from text
+                        if(re.match('([a-zA-Z][0-9](\-|\:)[a-zA-Z][0-9])', Moves )):
+                            str_pieces = re.split('[\s:-]', Moves.upper())
+                            x1 = ord(str_pieces[0][0]) - ord('A')
+                            y1 = int(str_pieces[0][1])
+                            x2 = ord(str_pieces[1][0]) - ord('A')
+                            y2 = int(str_pieces[1][1])  
+                            # calculate a pixel inside thge tile
+                            x1 = x1*100 + 1
+                            y1 = y1*100 - 25
+                            x2 = x2*100 + 1
+                            y2 = y2*100 - 25
+                            if(x1 < 0):
+                                x = 1
+                            if(x2 < 0):
+                                x = 1
+
+                            print(x1,y1,x2,y2)
+
+                            mx = x1
+                            my = y1
+                            command_x = x2
+                            command_y = y2
+                            
+                            #ugly copy of movement start code
+                            for piece in range(len(allPieces)):
+                                if allPieces[piece][2].alliance == currentPlayer:
+
+                                    if allPieces[piece][1][0] < mx < allPieces[piece][1][0] + 100:
+                                        if allPieces[piece][1][1] < my < allPieces[piece][1][1] + 100:
+                                            selectedImage = piece
+                                            prevx = allPieces[piece][1][0]
+                                            prevy = allPieces[piece][1][1]
+
+                                            initialpos = (my // 100 * 8) + mx // 100
+                                            logPmoving = ''
+                                            logPmoving = logPmoving + allPieces[selectedImage][2].toString() + ':' + convertion(
+                                                initialpos) + '-'
+
+                                            selectedLegals = allPieces[selectedImage][2].calculateLegalMoves(firstBoard)
+                                            for legals in selectedLegals:
+                                                resetColors.append([legals, allTiles[legals][0]])
+
+                                                if allTiles[legals][0] == dark_gray:
+                                                    allTiles[legals][0] = midle_gray
+                                                else:
+                                                    allTiles[legals][0] = light_gray
+
+                            #if valid piece execute movement
+                            print(selectedImage == None)
+                            if(selectedImage != None):
+                                command_move = True
                         Moves = ''
-                        print(ActionsList)
+                        #print(ActionsList)
                     if 1000 < mx < 1062:
                         auxWindow(0)
 
@@ -274,7 +331,14 @@ while not quitGame:
             allPieces[selectedImage][1][0] = mx - 50
             allPieces[selectedImage][1][1] = my - 50
 
-        if event.type == pygame.MOUSEBUTTONUP:
+        if event.type == pygame.MOUSEBUTTONUP or command_move == True:
+            if(command_move):
+                mx = command_x 
+                my = command_y
+                allPieces[selectedImage][1][0] = mx - 50
+                allPieces[selectedImage][1][1] = my - 50
+                command_move = False
+                print("Command move")
 
             for resets in resetColors:
                 allTiles[resets[0]][0] = resets[1]
@@ -352,7 +416,7 @@ while not quitGame:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
-                print(Moves)
+                #print(Moves)
                 Moves = ''
             elif event.key == pygame.K_BACKSPACE:
                 Moves = Moves[:-1]

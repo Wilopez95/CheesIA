@@ -1,1 +1,68 @@
-This is a Test
+Para mover una pieza utilizando comandos utiliza simplemente la cordenada inicial y final separadas por un - o :
+por ejemplo:
+
+D7:D6
+D7-D6
+
+Reglas del Ajedrez
+ 
+Reglas básicas
+El ajedrez es un juego de dos jugadores, donde a un jugador se le asignan piezas blancas y al otro negras. Cada jugador dispone de 16 piezas al empezar el juego: un rey, una dama o reina, dos torres, dos alfiles, dos caballos y ocho peones.  
+ 
+El propósito del juego
+El objetivo del juego es capturar al rey del otro jugador. La captura no se completa nuca, pero una vez que el rey es atacado y no puede escapar de esa captura, se dice que es un jaque mate y el juego finaliza.  
+ 
+El comienzo del juego
+El juego comienza en la posición que se muestra abajo sobre el tablero de ajedrez consistentes en 64 casillas en una cuadrícula de 8x8. Las blancas (el jugador con las piezas más claras) hace el primer movimiento. Después cada jugador tiene un único turno para mover. De echo, un jugador solo debe hacer un movimiento en cada turno.. En otras palabras, no se puede saltar el turno para mover.
+
+ 
+Jugando la partida
+Un movimiento consiste en colocar una pieza en un casilla diferente, siguiendo las reglas de movimiento de cada pieza..
+Un jugador puede capturar una pieza de su ponente moviendo una pieza suya a la casilla en la que está la pieza de su oponente. La pieza del oponente se retira del tablero y permanecerá fuera de juego el resto de la partida.
+Jaque
+Si un rey es amenazado de que va a ser capturado, pero tiene posibilidades de escapar, se dice jaque. Un rey no puede moverse donde se le vaya a hacer jaque, y si se encuentra en jaque se debe mover inmediatamente fuera de jaque- hay tres maneras en las que debes moverte fuera de jaque:
+Capturando la pieza que ha hecho el jaque
+Bloqueando la línea de ataque colocando tus propias piezas entre la pieza que ha hecho jaque y tu rey (Por supuesto, un rey no puede ser bloqueado)
+Moviendo el rey fuera de la zona de jaque
+Jaque mate
+El principal objetivo en el ajedrez en hacer jaque mate al rey de tu oponente. Cuando un rey no puede evitar ser capturado se dice que es jaque mate y el juego finaliza inmediatamente.
+Tablas por ahogado
+Se dice 'tablas' cuando al jugador que le toca mover no puede hacer ningún movimiento legal y su rey no esta en jaque. Esto finaliza inmediatamente el juego.
+ 
+Control del tiempo
+Se emplea un reloj de ajedrez normal para limitar la duración de la partida. Estos relojes contabilizan el tiempo que le lleva a cada jugador realizar sus movimientos por separado. Las reglas son bien sencillas, si te pasas del tiempo, pierdes el juego, así que debes planear tu tiempo.
+ 
+Movimientos especiales
+Enroque
+Si se dan las condiciones necesarias, un rey y una torre se pueden mover simultáneamente en un movimiento de enroque. Las condiciones son las siguientes:
+El rey que hace enroque no se ha movido todavía en toda la partida.
+La torre que hace enroque no se ha movido todavía en toda la partida
+El rey no se encuentra en jaque
+El rey se mueve a una casilla en la que no puede ser atacado por ninguna pieza enemiga; por ejemplo, cuando enrocas, no debe haber ninguna pieza que se pueda mover (diagonalmente, en el caso de los peones) a la casilla a la que se va a mover el rey. Es decir, no puedes hacer enroque para que te hagan jaque.
+El rey se mueve a una casilla en la que pueda ser atacado por una pieza enemiga; por ejemplo, no debes finalizar el enroque con tu rey en jaque.
+Todas las casillas entre la torre y el rey antes de enroque deben estar vacías.
+Cuando se hace enroque, el rey se mueve dos casillas hacia la torre, y la torre se coloca en la siguiente casilla del rey, saltando por encima de él;
+Un ejemplo: el rey blanco en la casilla e1 y la torre en la casilla a1 se mueve: el rey a la c1 y la torre a la d1 (enroque largo); el rey blanco en la casilla e1 y la torre en la casilla h1 se mueve el rey a g1 y la torre a f1 (enroque corto): El movimiento similar para las negras.
+ 
+Toma al paso
+Exclusivamente de los peones, y que no es obligatoria. Ocurre cuando se halla en la quinta casilla y un peón contrario abandona su casilla inicial y queda en la casilla situada justamente al lado de un peón contrario. Este último puede comerlo en sentido horizontal, a derecha e izquierda, tal como lo haría diagonalmente.
+ 
+Coronación, trasnformar o entrar reina
+Cuando uno o varios peones logran entrar en una casilla de la octava línea del bando contrario, tiene derecho a pedir cualquier pieza, a excepción de otro peón; y elegirá la que más le convenga, que siempre será la mejor se adapte a las contingencias momentáneas del juego. El efecto es inmediato y permanente.
+ 
+Fin del juego
+Ganando  
+Gana la partida el jugador  
+que haya conseguido hacer jaque mate al rey de su oponente.
+que su oponente se haya rendido.
+Tablas  
+Se dice que la partida esta en tablas cuando el rey del jugador al que le toca mover no se encuentra en jaque, y este jugador no puede realizar ningún movimiento permitido. Entonces se dice que el rey del jugador esta "ahogado". Esto finaliza inmediatamente el juego.  
+La partida se halla en tablas si los dos jugadores así lo han acordado de mutuo acuerdo.  
+La partida se halla en tablas cuando se presenta alguno de los siguientes finales:  
+rey contra rey;
+rey contra rey con solo un alfil o un caballo;
+el rey y u alfil contra el rey y un alfil, con los alfiles en diagonales del mismo color.
+Perdiendo  
+La partida la pierde al jugador que no haya ordenado el número de movimientos en el tiempo permitido, a menos que su oponen posea en único rey restante, en cuyo caso el juego finaliza en tablas.  
+
+fuente: https://www.flyordie.com/games/help/chess/es/games_rules_chess.html
