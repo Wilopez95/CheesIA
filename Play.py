@@ -17,6 +17,7 @@ firstBoard = chessBoard.Board()
 firstBoard.createBoard('TableroDeJuego')
 # firstBoard.printBoard()
 
+diccionarioPos = {"A": 1000}
 allTiles = []
 allPieces = []
 ActionsList = []
@@ -321,6 +322,7 @@ while not quitGame:
                             print(selectedImage == None)
                             if(selectedImage != None):
                                 command_move = True
+
                         Moves = ''
                         #print(ActionsList)
                     if 1000 < mx < 1062:

@@ -57,6 +57,19 @@ def generarArchivo():
         print("Error al generar")
 
 
+def getBoardString():
+    resultado = '   A-B-C-D-E-F-G-H\n'
+    for x in range(0, 8):
+        linea = str(x + 1) + "-|"
+        for y in range(0, 8):
+            if piezasGeneradas[x][y] is None:
+                linea = linea + "-|"
+            else:
+                linea = linea + obtenerEquivalente(piezasGeneradas[x][y][0], piezasGeneradas[x][y][1]) + "|"
+        resultado += linea + "\n"
+    return resultado
+
+
 def llenarMatriX(lista):
     for x in range(0, 8):
         listatemp = []
@@ -148,7 +161,8 @@ def obtenerFile():
 
     file1.close()
     imprimirTablero(piezasGeneradas)
-    #readyToPlay()
+    texto.insert(END, getBoardString())
+    # readyToPlay()
 
 
 def llamarJuego():
@@ -159,10 +173,17 @@ def llamarJuego():
     # exec(open('Play.py').read())
 
 
+def getColor(pColor):
+    if pColor == "Blancas":
+        return 0
+    else:
+        return 1
+
+
 def clicked():
     # lbl.configure(text="Button was clicked !!")
     correcto = False
-    print(contadores)
+    #print(contadores)
     if piezasGeneradas[fila.current()][columna.current()] is None:
         if nombrePieza.current() == 0:
             if contadores[nombrePieza.current()][colorPiezas.current()] < maxContador[0][
@@ -182,22 +203,49 @@ def clicked():
                 contadores[nombrePieza.current()][colorPiezas.current()] = contadores[nombrePieza.current()][
                                                                                colorPiezas.current()] + 1
                 correcto = True
-        if correcto:
-            texto.insert(END,
-                         "Insercion " + piezas[nombrePieza.current()] + " " + colores[colorPiezas.current()] + "-" +
-                         columnas[columna.current()] + filas[fila.current()] + "\n")
     else:
-
-        texto.insert(END, "Reemplazo " + piezas[nombrePieza.current()] + " " + colores[colorPiezas.current()] + "-" +
-                     columnas[columna.current()] + filas[fila.current()] + "\n")
+        if piezasGeneradas[fila.current()][columna.current()][0] == piezas[0]:
+            contadores[0][getColor(piezasGeneradas[fila.current()][columna.current()][1])] -= 1
+        elif piezasGeneradas[fila.current()][columna.current()][0] == piezas[1]:
+            contadores[1][getColor(piezasGeneradas[fila.current()][columna.current()][1])] -= 1
+        elif piezasGeneradas[fila.current()][columna.current()][0] == piezas[2]:
+            contadores[2][getColor(piezasGeneradas[fila.current()][columna.current()][1])] -= 1
+        elif piezasGeneradas[fila.current()][columna.current()][0] == piezas[3]:
+            contadores[3][getColor(piezasGeneradas[fila.current()][columna.current()][1])] -= 1
+        elif piezasGeneradas[fila.current()][columna.current()][0] == piezas[4]:
+            contadores[4][getColor(piezasGeneradas[fila.current()][columna.current()][1])] -= 1
+        else:
+            contadores[5][getColor(pColor)] -= 1
+        piezasGeneradas[fila.current()][columna.current()] = None
+        if nombrePieza.current() == 0:
+            if contadores[nombrePieza.current()][colorPiezas.current()] < maxContador[0][
+                colorPiezas.current()]:  # Peones
+                contadores[nombrePieza.current()][colorPiezas.current()] = contadores[nombrePieza.current()][
+                                                                               colorPiezas.current()] + 1
+                correcto = True
+        elif nombrePieza.current() > 3:
+            if contadores[nombrePieza.current()][colorPiezas.current()] < maxContador[2][
+                colorPiezas.current()]:  # reina y rey
+                contadores[nombrePieza.current()][colorPiezas.current()] = contadores[nombrePieza.current()][
+                                                                               colorPiezas.current()] + 1
+                correcto = True
+        else:
+            if contadores[nombrePieza.current()][colorPiezas.current()] < maxContador[1][
+                colorPiezas.current()]:  # Demas piezas
+                contadores[nombrePieza.current()][colorPiezas.current()] = contadores[nombrePieza.current()][
+                                                                               colorPiezas.current()] + 1
+                correcto = True
 
     if correcto:
         piezasGeneradas[fila.current()][columna.current()] = (
             piezas[nombrePieza.current()], colores[colorPiezas.current()])
+        texto.insert(END, "Inserción " + piezas[nombrePieza.current()] + " " + colores[colorPiezas.current()] + "-" +
+                     columnas[columna.current()] + filas[fila.current()] + "\n")
 
     # print(piezasGeneradas).
-    imprimirTablero(piezasGeneradas)
-    print(contadores)
+    #imprimirTablero(piezasGeneradas)
+    texto.insert(END, getBoardString())
+    #print(contadores)
 
 
 ##Inicio de declaraciones y de programa
